@@ -1,304 +1,282 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bango V2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bango V2</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #101010;
+  color: white;
+}
 
-    body {
-      background: #061b12;
-      color: white;
-      min-height: 100vh;
-    }
+header {
+  background: #0b0b0b;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #20c55a;
+}
 
-    header {
-      background: #0b3d28;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid #176b47;
-    }
+h1 {
+  color: #20c55a;
+  margin: 0;
+}
 
-    header h1 {
-      color: #39d98a;
-      font-size: 32px;
-    }
+.container {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+}
 
-    header p {
-      margin-top: 6px;
-      color: #c9e8d9;
-    }
+.card {
+  background: #181818;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 15px;
+  border: 1px solid #333;
+}
 
-    .container {
-      width: 92%;
-      max-width: 500px;
-      margin: 30px auto;
-    }
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: none;
+}
 
-    .card {
-      background: #0b2a1d;
-      padding: 25px;
-      border-radius: 18px;
-      margin-bottom: 20px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.3);
-    }
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #20c55a;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
 
-    h2 {
-      margin-bottom: 15px;
-      color: #39d98a;
-    }
+button:hover {
+  opacity: 0.85;
+}
 
-    input {
-      width: 100%;
-      padding: 14px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 10px;
-      background: #123b29;
-      color: white;
-      outline: none;
-    }
+.oculto {
+  display: none;
+}
 
-    input::placeholder {
-      color: #a7c8b8;
-    }
+.saldo {
+  font-size: 28px;
+  color: #20c55a;
+  text-align: center;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 10px;
-      background: #20c878;
-      color: #061b12;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.servico {
+  background: #222;
+  padding: 18px;
+  margin-top: 12px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+}
 
-    button:hover {
-      background: #39d98a;
-    }
-
-    .secondary {
-      background: transparent;
-      color: #39d98a;
-      border: 1px solid #39d98a;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .saldo {
-      text-align: center;
-      padding: 25px;
-      background: #123b29;
-      border-radius: 15px;
-      margin: 15px 0;
-    }
-
-    .saldo small {
-      color: #b8d9c9;
-    }
-
-    .saldo strong {
-      display: block;
-      font-size: 30px;
-      margin-top: 8px;
-      color: #39d98a;
-    }
-
-    .servicos {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .servico {
-      background: #123b29;
-      padding: 18px 10px;
-      text-align: center;
-      border-radius: 12px;
-      color: #d8f5e6;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #8eb3a1;
-      font-size: 13px;
-    }
-
-    .mensagem {
-      text-align: center;
-      margin-top: 12px;
-      color: #39d98a;
-      min-height: 20px;
-    }
-  </style>
+.servico:hover {
+  background: #2c2c2c;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>BANGO V2</h1>
-    <p>Oportunidades para todos</p>
-  </header>
+<header>
+  <h1>BANGO V2</h1>
+  <p>Oportunidades para todos</p>
+</header>
 
-  <main class="container">
+<div class="container">
 
-    <!-- INÍCIO -->
-    <section id="inicio" class="card">
-      <h2>Bem-vindo ao Bango V2</h2>
-      <p>
-        Uma plataforma criada para aproximar pessoas de oportunidades,
-        serviços e atividades na nossa sociedade.
-      </p>
+  <div id="inicio" class="card">
+    <h2>Bem-vindo ao Bango V2</h2>
+    <p>Uma plataforma de oportunidades para a nossa sociedade angolana.</p>
 
-      <button onclick="mostrar('login')">Entrar</button>
-      <button class="secondary" onclick="mostrar('cadastro')">
-        Criar conta
-      </button>
-    </section>
+    <button onclick="mostrar('cadastro')">Criar conta</button>
+    <button onclick="mostrar('login')">Entrar</button>
+  </div>
 
-    <!-- LOGIN -->
-    <section id="login" class="card hidden">
-      <h2>Entrar</h2>
+  <div id="cadastro" class="card oculto">
+    <h2>Criar conta</h2>
 
-      <input id="loginNome" type="text" placeholder="Nome">
-      <input id="loginSenha" type="password" placeholder="Senha">
+    <input id="nome" type="text" placeholder="Nome completo">
+    <input id="email" type="email" placeholder="E-mail">
+    <input id="senha" type="password" placeholder="Criar senha">
 
-      <button onclick="entrar()">Entrar</button>
-      <button class="secondary" onclick="mostrar('inicio')">
-        Voltar
-      </button>
+    <button onclick="criarConta()">Criar conta</button>
+    <button onclick="mostrar('inicio')">Voltar</button>
+  </div>
 
-      <div id="mensagemLogin" class="mensagem"></div>
-    </section>
+  <div id="login" class="card oculto">
+    <h2>Entrar</h2>
 
-    <!-- CADASTRO -->
-    <section id="cadastro" class="card hidden">
-      <h2>Criar conta</h2>
+    <input id="loginEmail" type="email" placeholder="E-mail">
+    <input id="loginSenha" type="password" placeholder="Senha">
 
-      <input id="nome" type="text" placeholder="Nome completo">
-      <input id="email" type="email" placeholder="Email">
-      <input id="senha" type="password" placeholder="Criar senha">
+    <button onclick="entrar()">Entrar</button>
+    <button onclick="mostrar('inicio')">Voltar</button>
+  </div>
 
-      <button onclick="cadastrar()">Criar conta</button>
-      <button class="secondary" onclick="mostrar('inicio')">
-        Voltar
-      </button>
+  <div id="painel" class="card oculto">
 
-      <div id="mensagemCadastro" class="mensagem"></div>
-    </section>
+    <h2 id="saudacao"></h2>
 
-    <!-- PAINEL -->
-    <section id="painel" class="hidden">
+    <p>Saldo demonstrativo</p>
 
-      <div class="card">
-        <h2>Olá, <span id="nomeUsuario"></span> 👋</h2>
-        <p>Bem-vindo ao teu painel Bango V2.</p>
+    <div class="saldo">0,00 Kz</div>
 
-        <div class="saldo">
-          <small>Saldo demonstrativo</small>
-          <strong>0,00 Kz</strong>
-        </div>
+    <button onclick="alert('Função de adicionar dinheiro em desenvolvimento.')">
+      Adicionar dinheiro
+    </button>
 
-        <button onclick="alert('Função demonstrativa. A integração financeira será adicionada posteriormente.')">
-          Adicionar dinheiro
-        </button>
+    <button onclick="alert('Função de enviar dinheiro em desenvolvimento.')">
+      Enviar dinheiro
+    </button>
 
-        <button onclick="alert('Função demonstrativa. Envio de dinheiro ainda não está ativo.')">
-          Enviar dinheiro
-        </button>
+    <h2>Oportunidades</h2>
 
-        <button class="secondary" onclick="sair()">
-          Sair
-        </button>
-      </div>
+    <div class="servico" onclick="abrirArea('Trabalho')">
+      💼 Trabalho
+    </div>
 
-      <div class="card">
-        <h2>Oportunidades</h2>
+    <div class="servico" onclick="abrirArea('Serviços')">
+      🛠️ Serviços
+    </div>
 
-        <div class="servicos">
-          <div class="servico">💼 Trabalho</div>
-          <div class="servico">🛠️ Serviços</div>
-          <div class="servico">♻️ Reciclagem</div>
-          <div class="servico">🤝 Comunidade</div>
-        </div>
-      </div>
+    <div class="servico" onclick="abrirArea('Reciclagem')">
+      ♻️ Reciclagem
+    </div>
 
-    </section>
+    <div class="servico" onclick="abrirArea('Comunidade')">
+      🤝 Comunidade
+    </div>
 
-  </main>
+    <button onclick="sair()">Sair</button>
+  </div>
 
-  <footer>
-    Bango V2 © 2026<br>
-    Protótipo em desenvolvimento
-  </footer>
+  <div id="area" class="card oculto">
 
-  <script>
-    function mostrar(id) {
-      document.getElementById("inicio").classList.add("hidden");
-      document.getElementById("login").classList.add("hidden");
-      document.getElementById("cadastro").classList.add("hidden");
-      document.getElementById("painel").classList.add("hidden");
+    <h2 id="tituloArea"></h2>
 
-      document.getElementById(id).classList.remove("hidden");
-    }
+    <p id="textoArea"></p>
 
-    function cadastrar() {
-      const nome = document.getElementById("nome").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const senha = document.getElementById("senha").value;
+    <button onclick="alert('Publicação de oportunidade em desenvolvimento.')">
+      Publicar oportunidade
+    </button>
 
-      if (!nome || !email || !senha) {
-        document.getElementById("mensagemCadastro").textContent =
-          "Preencha todos os campos.";
-        return;
-      }
+    <button onclick="alert('Pesquisa de oportunidades em desenvolvimento.')">
+      Procurar oportunidades
+    </button>
 
-      localStorage.setItem("bangoNome", nome);
-      localStorage.setItem("bangoEmail", email);
-      localStorage.setItem("bangoSenha", senha);
+    <button onclick="voltarPainel()">
+      Voltar ao painel
+    </button>
 
-      document.getElementById("mensagemCadastro").textContent =
-        "Conta criada com sucesso!";
+  </div>
 
-      setTimeout(() => {
-        mostrar("login");
-      }, 700);
-    }
+</div>
 
-    function entrar() {
-      const nome = document.getElementById("loginNome").value.trim();
-      const senha = document.getElementById("loginSenha").value;
+<script>
 
-      const nomeGuardado = localStorage.getItem("bangoNome");
-      const senhaGuardada = localStorage.getItem("bangoSenha");
+function esconderTudo() {
+  document.getElementById("inicio").classList.add("oculto");
+  document.getElementById("cadastro").classList.add("oculto");
+  document.getElementById("login").classList.add("oculto");
+  document.getElementById("painel").classList.add("oculto");
+  document.getElementById("area").classList.add("oculto");
+}
 
-      if (nome === nomeGuardado && senha === senhaGuardada) {
-        document.getElementById("nomeUsuario").textContent = nomeGuardado;
-        mostrar("painel");
-      } else {
-        document.getElementById("mensagemLogin").textContent =
-          "Nome ou senha incorretos.";
-      }
-    }
+function mostrar(id) {
+  esconderTudo();
+  document.getElementById(id).classList.remove("oculto");
+}
 
-    function sair() {
-      mostrar("inicio");
-    }
-  </script>
+function criarConta() {
+
+  let nome = document.getElementById("nome").value;
+  let email = document.getElementById("email").value;
+  let senha = document.getElementById("senha").value;
+
+  if (!nome || !email || !senha) {
+    alert("Preenche todos os campos.");
+    return;
+  }
+
+  localStorage.setItem("bangoNome", nome);
+  localStorage.setItem("bangoEmail", email);
+  localStorage.setItem("bangoSenha", senha);
+
+  alert("Conta criada com sucesso!");
+
+  abrirPainel(nome);
+}
+
+function entrar() {
+
+  let email = document.getElementById("loginEmail").value;
+  let senha = document.getElementById("loginSenha").value;
+
+  let emailGuardado = localStorage.getItem("bangoEmail");
+  let senhaGuardada = localStorage.getItem("bangoSenha");
+  let nome = localStorage.getItem("bangoNome");
+
+  if (email === emailGuardado && senha === senhaGuardada) {
+    abrirPainel(nome);
+  } else {
+    alert("E-mail ou senha incorretos.");
+  }
+}
+
+function abrirPainel(nome) {
+
+  esconderTudo();
+
+  document.getElementById("painel").classList.remove("oculto");
+
+  document.getElementById("saudacao").innerText =
+    "Olá, " + nome + " 👋";
+}
+
+function abrirArea(nomeArea) {
+
+  esconderTudo();
+
+  document.getElementById("area").classList.remove("oculto");
+
+  document.getElementById("tituloArea").innerText =
+    nomeArea;
+
+  document.getElementById("textoArea").innerText =
+    "Encontra aqui oportunidades de " +
+    nomeArea.toLowerCase() +
+    " no Bango V2.";
+}
+
+function voltarPainel() {
+
+  let nome = localStorage.getItem("bangoNome");
+
+  abrirPainel(nome);
+}
+
+function sair() {
+
+  esconderTudo();
+
+  document.getElementById("inicio").classList.remove("oculto");
+}
+
+</script>
 
 </body>
 </html>
