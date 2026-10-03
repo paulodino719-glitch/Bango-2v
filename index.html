@@ -169,12 +169,27 @@ button:hover {
     <h2 id="tituloArea"></h2>
 
     <p id="textoArea"></p>
-
-    <button onclick="alert('Publicação de oportunidade em desenvolvimento.')">
-      Publicar oportunidade
-    </button>
-<button onclick="mostrarOportunidades()">function mostrarOportunidades() {
+<button onclick="publicarOportunidade()">
+  Publicar oportunidade
+</button>
+   function publicarOportunidade() {
   esconderTudo();
+
+  document.getElementById("area").classList.remove("oculto");
+
+  document.getElementById("tituloArea").innerText =
+    "📢 Publicar oportunidade";
+
+  document.getElementById("textoArea").innerHTML =
+    "<input id='nomeOportunidade' placeholder='Nome da oportunidade'>" +
+    "<br><br>" +
+    "<input id='localOportunidade' placeholder='Local'>" +
+    "<br><br>" +
+    "<textarea id='descricaoOportunidade' placeholder='Descrição da oportunidade'></textarea>" +
+    "<br><br>" +
+    "<button onclick='guardarOportunidade()'>Publicar</button>";
+} 
+  
 
   document.getElementById("area").classList.remove("oculto");
 
@@ -273,9 +288,33 @@ function abrirArea(nomeArea) {
     "Encontra aqui oportunidades de " +
     nomeArea.toLowerCase() +
     " no Bango V2.";
-}
+function guardarOportunidade() {
+  let nome = document.getElementById("nomeOportunidade").value;
+  let local = document.getElementById("localOportunidade").value;
+  let descricao = document.getElementById("descricaoOportunidade").value;
 
-function voltarPainel() {
+  if (!nome || !local || !descricao) {
+    alert("Preenche todos os campos.");
+    return;
+  }
+
+  let oportunidades =
+    JSON.parse(localStorage.getItem("bangoOportunidades")) || [];
+
+  oportunidades.push({
+    nome: nome,
+    local: local,
+    descricao: descricao
+  });
+
+  localStorage.setItem(
+    "bangoOportunidades",
+    JSON.stringify(oportunidades)
+  );
+
+  alert("Oportunidade publicada com sucesso!");
+  mostrarOportunidades();
+}
 
   let nome = localStorage.getItem("bangoNome");
 
