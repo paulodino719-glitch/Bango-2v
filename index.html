@@ -173,10 +173,23 @@ button:hover {
     <button onclick="alert('Publicação de oportunidade em desenvolvimento.')">
       Publicar oportunidade
     </button>
+<button onclick="mostrarOportunidades()">function mostrarOportunidades() {
+  esconderTudo();
 
-    <button onclick="alert('Pesquisa de oportunidades em desenvolvimento.')">
-      Procurar oportunidades
-    </button>
+  document.getElementById("area").classList.remove("oculto");
+
+  document.getElementById("tituloArea").innerText =
+    "♻️ Oportunidades de Reciclagem";
+
+  document.getElementById("textoArea").innerHTML =
+    "<div class='servico'>♻️ Recolha de garrafas de plástico</div>" +
+    "<div class='servico'>📦 Recolha de papelão</div>" +
+    "<div class='servico'>🧹 Limpeza e organização comunitária</div>" +
+    "<div class='servico'>🌱 Recolha de materiais reutilizáveis</div>";
+}
+  Procurar oportunidades
+</button>
+  
 
     <button onclick="voltarPainel()">
       Voltar ao painel
