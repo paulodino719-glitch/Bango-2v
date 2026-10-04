@@ -163,8 +163,25 @@ button:hover {
 
     <button onclick="sair()">Sair</button>
   </div>
+<div id="area" class="card oculto">
 
-  <div id="area" class="card oculto">
+  <h2 id="tituloArea"></h2>
+  <p id="textoArea"></p>
+
+  <button onclick="publicarOportunidade()">
+    Publicar oportunidade
+  </button>
+
+  <button onclick="mostrarOportunidades()">
+    Procurar oportunidades
+  </button>
+
+  <button onclick="voltarPainel()">
+    Voltar ao painel
+  </button>
+
+</div>
+  
 
     <h2 id="tituloArea"></h2>
 
@@ -173,6 +190,8 @@ button:hover {
   Publicar oportunidade
 </button>
    function publicarOportunidade() {
+  ...
+  }
   esconderTudo();
 
   document.getElementById("area").classList.remove("oculto");
