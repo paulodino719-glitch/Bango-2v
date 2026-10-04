@@ -181,6 +181,23 @@ button:hover {
   </button>
 
 </div>
+
+  <h2 id="tituloArea"></h2>
+  <p id="textoArea"></p>
+
+  <button onclick="publicarOportunidade()">
+    Publicar oportunidade
+  </button>
+
+  <button onclick="mostrarOportunidades()">
+    Procurar oportunidades
+  </button>
+
+  <button onclick="voltarPainel()">
+    Voltar ao painel
+  </button>
+
+</div>
   
 
     <h2 id="tituloArea"></h2>
@@ -346,8 +363,156 @@ function sair() {
 
   document.getElementById("inicio").classList.remove("oculto");
 }
+<script>
+function esconderTudo() {
+  document.getElementById("inicio").classList.add("oculto");
+  document.getElementById("cadastro").classList.add("oculto");
+  document.getElementById("login").classList.add("oculto");
+  document.getElementById("painel").classList.add("oculto");
+  document.getElementById("area").classList.add("oculto");
+}
 
+function mostrar(id) {
+  esconderTudo();
+  document.getElementById(id).classList.remove("oculto");
+}
+
+function criarConta() {
+  let nome = document.getElementById("nome").value;
+  let email = document.getElementById("email").value;
+  let senha = document.getElementById("senha").value;
+
+  if (!nome || !email || !senha) {
+    alert("Preenche todos os campos.");
+    return;
+  }
+
+  localStorage.setItem("bangoNome", nome);
+  localStorage.setItem("bangoEmail", email);
+  localStorage.setItem("bangoSenha", senha);
+
+  alert("Conta criada com sucesso!");
+  abrirPainel(nome);
+}
+
+function entrar() {
+  let email = document.getElementById("loginEmail").value;
+  let senha = document.getElementById("loginSenha").value;
+
+  let emailGuardado = localStorage.getItem("bangoEmail");
+  let senhaGuardada = localStorage.getItem("bangoSenha");
+  let nome = localStorage.getItem("bangoNome");
+
+  if (email === emailGuardado && senha === senhaGuardada) {
+    abrirPainel(nome);
+  } else {
+    alert("E-mail ou senha incorretos.");
+  }
+}
+
+function abrirPainel(nome) {
+  esconderTudo();
+  document.getElementById("painel").classList.remove("oculto");
+  document.getElementById("saudacao").innerText =
+    "Olá, " + nome + " 👋";
+}
+
+function abrirArea(nomeArea) {
+  esconderTudo();
+  document.getElementById("area").classList.remove("oculto");
+  document.getElementById("tituloArea").innerText = nomeArea;
+  document.getElementById("textoArea").innerText =
+    "Encontra aqui oportunidades de " +
+    nomeArea.toLowerCase() +
+    " no Bango V2.";
+}
+
+function publicarOportunidade() {
+  esconderTudo();
+
+  document.getElementById("area").classList.remove("oculto");
+
+  document.getElementById("tituloArea").innerText =
+    "📢 Publicar oportunidade";
+
+  document.getElementById("textoArea").innerHTML =
+    "<input id='nomeOportunidade' placeholder='Nome da oportunidade'>" +
+    "<br><br>" +
+    "<input id='localOportunidade' placeholder='Local'>" +
+    "<br><br>" +
+    "<textarea id='descricaoOportunidade' placeholder='Descrição da oportunidade'></textarea>" +
+    "<br><br>" +
+    "<button onclick='guardarOportunidade()'>Publicar</button>";
+}
+
+function mostrarOportunidades() {
+  esconderTudo();
+
+  document.getElementById("area").classList.remove("oculto");
+
+  document.getElementById("tituloArea").innerText =
+    "♻️ Oportunidades de Reciclagem";
+
+  let oportunidades =
+    JSON.parse(localStorage.getItem("bangoOportunidades")) || [];
+
+  let lista =
+    "<div class='servico'>♻️ Recolha de garrafas de plástico</div>" +
+    "<div class='servico'>📦 Recolha de papelão</div>" +
+    "<div class='servico'>🧹 Limpeza e organização comunitária</div>" +
+    "<div class='servico'>🌱 Recolha de materiais reutilizáveis</div>";
+
+  oportunidades.forEach(function(oportunidade) {
+    lista +=
+      "<div class='servico'>" +
+      "<strong>" + oportunidade.nome + "</strong><br>" +
+      "📍 " + oportunidade.local + "<br>" +
+      oportunidade.descricao +
+      "</div>";
+  });
+
+  document.getElementById("textoArea").innerHTML = lista;
+}
+
+function guardarOportunidade() {
+  let nome = document.getElementById("nomeOportunidade").value;
+  let local = document.getElementById("localOportunidade").value;
+  let descricao = document.getElementById("descricaoOportunidade").value;
+
+  if (!nome || !local || !descricao) {
+    alert("Preenche todos os campos.");
+    return;
+  }
+
+  let oportunidades =
+    JSON.parse(localStorage.getItem("bangoOportunidades")) || [];
+
+  oportunidades.push({
+    nome: nome,
+    local: local,
+    descricao: descricao
+  });
+
+  localStorage.setItem(
+    "bangoOportunidades",
+    JSON.stringify(oportunidades)
+  );
+
+  alert("Oportunidade publicada com sucesso!");
+  mostrarOportunidades();
+}
+
+function voltarPainel() {
+  let nome = localStorage.getItem("bangoNome");
+  abrirPainel(nome);
+}
+
+function sair() {
+  esconderTudo();
+  document.getElementById("inicio").classList.remove("oculto");
+}
 </script>
+
 
 </body>
 </html>
